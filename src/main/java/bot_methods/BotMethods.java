@@ -64,7 +64,7 @@ public class BotMethods {
 
 	public static void clickOnNotNow(WebDriver driver) {
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(4000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -83,7 +83,7 @@ public class BotMethods {
 
 	public static void clickOnFollowers(WebDriver driver) {
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -104,23 +104,32 @@ public class BotMethods {
 	}
 
 	// TODO Modify the code. Make the scroll method dinamic.
-	public static void scrollTheFollowers(WebDriver driver) {
+	public static void scrollTheFollowersAndGetNames(WebDriver driver) {
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
 		}
+
+		JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
+		WebElement scrollBox = driver.findElement(By.xpath("/html/body/div[4]/div/div[2]"));
+
 		for (int i = 0; i < 17; i++) {
-			WebElement scrollBox = driver.findElement(By.xpath("/html/body/div[4]/div/div[2]"));
-			JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
 			javascriptExecutor.executeScript("arguments[0].scrollBy(0,arguments[0].scrollHeight)", scrollBox);
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-
 		}
+
+		List<WebElement> followers = scrollBox.findElements(By.tagName("a"));
+		for (WebElement follower : followers) {
+			if (follower.getText() != "") {
+				System.out.println(follower.getText());
+			}
+		}
+
 	}
 
 }

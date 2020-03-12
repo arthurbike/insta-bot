@@ -15,13 +15,13 @@ public class Bot {
 		BotMethods.setLogin(username, password);
 		BotMethods.setSize(driver);
 		BotMethods.setPosition(driver);
-		BotMethods.clickLoginButton(driver);
 		BotMethods.fillTheForm(driver);
 		BotMethods.clickOnNotNow(driver);
 		BotMethods.clickOnPerfil(driver);
 		BotMethods.clickOnFollowers(driver);
-		BotMethods.scrollTheFollowers(driver);
-		BotMethods.fillListOfFollowers(driver);
+		BotMethods.scrollTheFollowersAndGetNames(driver);
+		//BotMethods.getLists(driver);
+		//BotMethods.fillListOfFollowers(driver);
 	}
 	
 }
