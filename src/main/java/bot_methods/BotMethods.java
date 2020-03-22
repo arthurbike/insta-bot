@@ -17,6 +17,7 @@ public class BotMethods {
 	private static String PASSWORD = "";
 	static List<String> followersList = new ArrayList();
 	static List<String> followingList = new ArrayList();
+	static List<String> notFollowingBack = new ArrayList();
 
 	public static void setLogin(String username, String password) {
 		USER = username;
@@ -155,6 +156,23 @@ public class BotMethods {
 		System.out.println("_________________________________");
 		System.out.println("Size of the following list: " + followingList.size());
 		System.out.println("_________________________________");
+	}
+	
+	public static void compareFollowers() {
+		for (String user : followingList) {
+		  if (!followersList.contains(user)) {
+			  notFollowingBack.add(user);
+		  }
+		}
+		System.out.println("_______________________________________");
+		System.out.println("Size of the not following back list: " + notFollowingBack.size());
+		System.out.println("_______________________________________");
+	}
+	
+	public static void printNamesOfNotFollowingBack () {
+		for (String user : notFollowingBack) {
+			System.out.println(user);
+		}
 	}
 
 }

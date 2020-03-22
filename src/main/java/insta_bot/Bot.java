@@ -25,6 +25,8 @@ public class Bot {
 		BotMethods.clickOnFollowing(driver);
 		BotMethods.GetFollowing(driver);
 		BotMethods.getSizeOfFollowingList();
+		BotMethods.compareFollowers();
+		BotMethods.printNamesOfNotFollowingBack();
 	}
 	
 }
