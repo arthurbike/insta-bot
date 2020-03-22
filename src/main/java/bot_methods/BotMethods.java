@@ -15,11 +15,20 @@ public class BotMethods {
 	// TODO Swap all Threads for the WebDriverWait class.
 	private static String USER = "";
 	private static String PASSWORD = "";
-	static List<String> followers = new ArrayList();
+	static List<String> followersList = new ArrayList();
+	static List<String> followingList = new ArrayList();
 
 	public static void setLogin(String username, String password) {
 		USER = username;
 		PASSWORD = password;
+	}
+
+	private static void sleep(final int time) {
+		try {
+			Thread.sleep(time);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void setPosition(WebDriver driver) {
@@ -28,11 +37,7 @@ public class BotMethods {
 	}
 
 	public static void getPosition(WebDriver driver) {
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		sleep(5000);
 		System.out.println(driver.manage().window().getPosition());
 	}
 
@@ -47,11 +52,7 @@ public class BotMethods {
 	}
 
 	public static void fillTheForm(WebDriver driver) {
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		sleep(3000);
 		WebElement login = driver.findElement(By.name("username"));
 		login.submit();
 		login.sendKeys(USER);
@@ -63,30 +64,18 @@ public class BotMethods {
 	}
 
 	public static void clickOnNotNow(WebDriver driver) {
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		sleep(4000);
 		driver.findElement(By.xpath("//button[contains(text(), 'Agora não')]")).click();
 	}
 
 	public static void clickOnPerfil(WebDriver driver) {
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		sleep(2000);
 		WebElement perfil = driver.findElement(By.xpath("//a[@href=\"/" + USER + "/\"]"));
 		perfil.click();
 	}
 
 	public static void clickOnFollowers(WebDriver driver) {
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		sleep(3000);
 		WebElement followers = driver.findElement(By.xpath("//a[@href=\"/" + USER + "/followers/\"]"));
 		followers.click();
 	}
@@ -98,38 +87,74 @@ public class BotMethods {
 		for (WebElement user : users) {
 			if (user.getText() != "") {
 				System.out.println(user.getText());
-				followers.add(user.getText());
+				followersList.add(user.getText());
 			}
 		}
 	}
 
 	// TODO Modify the code. Make the scroll method dinamic.
 	public static void scrollTheFollowersAndGetNames(WebDriver driver) {
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
+		sleep(1500);
 
 		JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
 		WebElement scrollBox = driver.findElement(By.xpath("/html/body/div[4]/div/div[2]"));
 
-		for (int i = 0; i < 17; i++) {
+		for (int i = 0; i < 18; i++) {
 			javascriptExecutor.executeScript("arguments[0].scrollBy(0,arguments[0].scrollHeight)", scrollBox);
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			sleep(1500);
 		}
 
 		List<WebElement> followers = scrollBox.findElements(By.tagName("a"));
 		for (WebElement follower : followers) {
-			if (follower.getText() != "") {
+			if (!follower.getText().isEmpty()) {
+				followersList.add(follower.getText());
 				System.out.println(follower.getText());
 			}
 		}
 
+	}
+
+	public static void GetFollowing(WebDriver driver) {
+		sleep(1500);
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		WebElement scrollBox = driver.findElement(By.xpath("/html/body/div[4]/div/div[2]"));
+
+		for (int i = 0; i < 24; i++) {
+			jsExecutor.executeScript("arguments[0].scrollBy(0, arguments[0].scrollHeight)", scrollBox);
+			sleep(2000);
+		}
+
+		List<WebElement> following = scrollBox.findElements(By.tagName("a"));
+		for (WebElement user : following) {
+			if (!user.getText().isEmpty()) {
+				followingList.add(user.getText());
+				System.out.println(user.getText());
+			}
+		}
+	}
+	
+	public static void closeFollowers(WebDriver driver) {
+		sleep(3000);
+		WebElement closeButton = driver.findElement(By.cssSelector("[aria-label=\"Fechar\"]"));
+		closeButton.click();
+	}
+
+	public static void clickOnFollowing(WebDriver driver) {
+		sleep(3000);
+		WebElement following = driver.findElement(By.xpath("//a[@href=\"/" + USER + "/following/\"]"));
+		following.click();
+	}
+
+	public static void getSizeOfFollowersList() {
+		System.out.println("_________________________________");
+		System.out.println("Size of the followers list: " + followersList.size());
+		System.out.println("_________________________________");
+	}
+	
+	public static void getSizeOfFollowingList() {
+		System.out.println("_________________________________");
+		System.out.println("Size of the following list: " + followingList.size());
+		System.out.println("_________________________________");
 	}
 
 }

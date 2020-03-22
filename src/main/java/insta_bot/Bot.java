@@ -20,8 +20,11 @@ public class Bot {
 		BotMethods.clickOnPerfil(driver);
 		BotMethods.clickOnFollowers(driver);
 		BotMethods.scrollTheFollowersAndGetNames(driver);
-		//BotMethods.getLists(driver);
-		//BotMethods.fillListOfFollowers(driver);
+		BotMethods.getSizeOfFollowersList();
+		BotMethods.closeFollowers(driver);
+		BotMethods.clickOnFollowing(driver);
+		BotMethods.GetFollowing(driver);
+		BotMethods.getSizeOfFollowingList();
 	}
 	
 }

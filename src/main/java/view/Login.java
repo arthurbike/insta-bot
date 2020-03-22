@@ -73,7 +73,7 @@ public class Login extends JFrame {
 			public void keyPressed(KeyEvent evt) {
 				if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
 					Bot.run(txtUser.getText(), txtPassword.getText());
-					System.exit(0);
+					System.exit(1);
 				}
 			}
 		});
