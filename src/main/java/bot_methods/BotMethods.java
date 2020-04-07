@@ -81,7 +81,7 @@ public class BotMethods {
 		followers.click();
 	}
 
-	// TODO Modify the code, the code isn't working.
+	// TODO Remove this method from the coode.
 	public static void fillListOfFollowers(WebDriver driver) {
 		List<WebElement> users = new ArrayList();
 		users = driver.findElements(By.className("FPmhX notranslate  _0imsa "));
