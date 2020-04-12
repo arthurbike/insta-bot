@@ -27,6 +27,7 @@ public class Bot {
 		BotMethods.getSizeOfFollowingList();
 		BotMethods.compareFollowers();
 		BotMethods.printNamesOfNotFollowingBack();
+		BotMethods.closeBrowser(driver);
 	}
 	
 }

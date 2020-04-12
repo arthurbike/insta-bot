@@ -164,15 +164,19 @@ public class BotMethods {
 			  notFollowingBack.add(user);
 		  }
 		}
-		System.out.println("_______________________________________");
-		System.out.println("Size of the not following back list: " + notFollowingBack.size());
-		System.out.println("_______________________________________");
 	}
 	
 	public static void printNamesOfNotFollowingBack () {
 		for (String user : notFollowingBack) {
 			System.out.println(user);
 		}
+		System.out.println("_______________________________________");
+		System.out.println("Size of the not following back list: " + notFollowingBack.size());
+		System.out.println("_______________________________________");
+	}
+	
+	public static void closeBrowser(WebDriver driver) {
+		driver.close();
 	}
 
 }
