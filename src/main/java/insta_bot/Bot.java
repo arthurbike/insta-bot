@@ -10,7 +10,7 @@ public class Bot {
 	public static void run(String username, String password) {
 		WebDriver driver = null;
 		try {
-			System.setProperty("webdriver.chrome.driver", "src\\main\\java\\insta_bot\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 			driver = new ChromeDriver();
 			driver.get("https://instagram.com");
 			BotMethods.setLogin(username, password);
